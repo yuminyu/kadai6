@@ -45,7 +45,43 @@
     </form>
     </form>
 
+<script>
+    const url = "post_get_confirm.php";
+    
+    const post_paras = {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({"name":"aaa"})
+    }
 
+    //getでレスポンス取得する(cookieの訪問回数は増える)
+    fetch(url+'?name=aaa')
+    .then((get_response)=>{
+        return get_response.text();
+    })
+    .then((get_text)=>{
+        //HTML部分をログに
+        console.log(get_text);
+         //postでレスポンス取得する(cookieの訪問回数は増える)
+        fetch(url,post_paras)
+        .then((post_response)=>{
+            return post_response.text(); 
+        })
+        .then((post_text)=>{
+            //HTML部分をログに
+            console.log(post_text);
+        })
+    })
+
+   
+
+   
+
+
+</script>
 </body>
 
 </html>
+
